@@ -21,6 +21,7 @@ body {
   overflow: hidden;
 }
 
+/* MAIN CONTENT */
 .container {
   text-align: center;
   color: white;
@@ -28,7 +29,7 @@ body {
   z-index: 1;
 }
 
-img {
+.container img {
   width: 180px;
   height: 180px;
   border-radius: 50%;
@@ -68,6 +69,20 @@ button {
   animation: pop 0.4s ease;
 }
 
+.popup-content h2 {
+  margin-top: 0;
+}
+
+/* POPUP IMAGE */
+.popup-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid #ff4d6d;
+  margin: 15px 0;
+}
+
 /* FIREWORKS */
 .firework {
   position: absolute;
@@ -98,7 +113,7 @@ button {
   <img src="./her.jpg" alt="My Love">
 
   <h1>Happy Birthday cutu 🎂</h1>
-  <p>Happy Birthday to the girl who owns my heart❤️ mera golgappa meri rasmali mwahhhh</p>
+  <p>Happy Birthday to the girl who owns my heart ❤️ mera golgappa meri rasmali</p>
 
   <button onclick="playMusic()">▶ Play Song</button><br>
   <button onclick="goFullScreen()">📱 Full Screen</button><br>
@@ -109,15 +124,19 @@ button {
   </audio>
 </div>
 
-<!-- LOVE LETTER POPUP -->
+<!-- SURPRISE POPUP -->
 <div class="popup" id="letter">
   <div class="popup-content">
     <h2>My Love ❤️</h2>
+
+    <img src="./surprise.jpg" alt="Special Moment" class="popup-img">
+
     <p>
       You are my smile, my peace, and my forever.<br><br>
       Every heartbeat of mine belongs to you.
       Happy Birthday, my love 💖
     </p>
+
     <button onclick="closeLetter()">Close 💕</button>
   </div>
 </div>
@@ -163,7 +182,6 @@ function startFireworks() {
 
 </body>
 </html>
-
 
 
 
