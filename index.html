@@ -2,179 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday My Love</title>
+<title>Happy Birthday My Love ❤️</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff7fa3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 
 <style>
 body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  background: #ff7fa3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 .container {
-    text-align: center;
-    color: white;
-    z-index: 1;
-}
-
-h1 {
-    font-size: 3em;
-    animation: glow 2s infinite alternate;
-}
-
-p {
-    font-size: 1.5em;
+  text-align: center;
+  color: white;
+  padding: 20px;
 }
 
 img {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 5px solid white;
-    object-fit: cover;
-    animation: pulse 2s infinite;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid white;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+p {
+  font-size: 18px;
 }
 
 button {
-    margin: 12px;
-    padding: 12px 28px;
-    font-size: 16px;
-    border: none;
-    border-radius: 30px;
-    background: white;
-    color: #ff5e8e;
-    cursor: pointer;
-}
-
-/* Popup */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-.popup-content {
-    background: white;
-    color: #ff5e8e;
-    padding: 30px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    animation: pop 0.5s ease;
-}
-
-.close {
-    margin-top: 20px;
-    background: #ff5e8e;
-    color: white;
-}
-
-/* Fireworks */
-.firework {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    animation: explode 1s ease-out forwards;
-}
-
-/* Animations */
-@keyframes glow {
-    from { text-shadow: 0 0 10px white; }
-    to { text-shadow: 0 0 30px white; }
-}
-
-@keyframes pulse {
-    50% { transform: scale(1.08); }
-}
-
-@keyframes pop {
-    from { transform: scale(0.6); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes explode {
-    to {
-        transform: translate(var(--x), var(--y));
-        opacity: 0;
-    }
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bg-music" loop>
-    <source src="song.mp3" type="audio/mpeg">
-</audio>
-
 <div class="container">
-    <img src="her.jpg">
-    <h1>Happy Birthday 🎂</h1>
-    <p>Happy Birthday to the girl who owns my heart ❤️</p>
+  <img src="./her.jpg" alt="My Love">
 
-    <button onclick="playMusic()">▶ Play Song</button>
-    <button onclick="openLetter()">💌 Surprise</button>
-</div>
+  <h1>Happy Birthday 🎂</h1>
+  <p>Happy Birthday to the girl who owns my heart ❤️</p>
 
-<!-- Love Letter -->
-<div class="popup" id="letter">
-    <div class="popup-content">
-        <h2>My Love ❤️</h2>
-        <p>
-            You are my smile, my happiness, and my forever.<br><br>
-            On your birthday and always, I choose you.
-            I love you more than words can say 💖
-        </p>
-        <button class="close" onclick="closeLetter()">Close 💕</button>
-    </div>
+  <button onclick="playMusic()">▶ Play Song</button><br>
+  <button onclick="goFullScreen()">📱 Full Screen</button>
+
+  <audio id="music">
+    <source src="./song.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
 <script>
 function playMusic() {
-    document.getElementById("bg-music").play();
+  const music = document.getElementById("music");
+  music.play().catch(() => {
+    alert("Tap again to allow sound ❤️");
+  });
 }
 
-function openLetter() {
-    document.getElementById("letter").style.display = "flex";
-}
+function goFullScreen() {
+  constúss = document.documentElement;
 
-function closeLetter() {
-    document.getElementById("letter").style.display = "none";
-    startFireworks();
-}
-
-/* Fireworks function */
-function startFireworks() {
-    for (let i = 0; i < 120; i++) {
-        const spark = document.createElement("div");
-        spark.className = "firework";
-        spark.style.left = "50vw";
-        spark.style.top = "50vh";
-        spark.style.background = `hsl(${Math.random()*360},100%,60%)`;
-        spark.style.setProperty("--x", (Math.random()-0.5)*400 + "px");
-        spark.style.setProperty("--y", (Math.random()-0.5)*400 + "px");
-        document.body.appendChild(spark);
-
-        setTimeout(() => spark.remove(), 1000);
-    }
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    document.documentElement.webkitRequestFullscreen(); // Safari
+  }
 }
 </script>
 
 </body>
 </html>
+
+
 
 
