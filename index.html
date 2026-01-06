@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday snigdhuu ❤️</title>
+<title>Happy Birthday My Love ❤️</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ff7fa3">
@@ -25,6 +25,7 @@ body {
   text-align: center;
   color: white;
   padding: 20px;
+  z-index: 1;
 }
 
 img {
@@ -32,19 +33,11 @@ img {
   height: 180px;
   border-radius: 50%;
   border: 5px solid white;
-  margin-bottom: 20px;
-}
-
-h1 {
-  margin: 10px 0;
-}
-
-p {
-  font-size: 18px;
+  margin-bottom: 15px;
 }
 
 button {
-  margin-top: 15px;
+  margin: 10px;
   padding: 12px 25px;
   font-size: 16px;
   border: none;
@@ -52,6 +45,49 @@ button {
   background: white;
   color: #ff4d6d;
   cursor: pointer;
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.popup-content {
+  background: white;
+  color: #ff4d6d;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 350px;
+  text-align: center;
+  animation: pop 0.4s ease;
+}
+
+/* FIREWORKS */
+.firework {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: explode 1s ease-out forwards;
+}
+
+/* ANIMATIONS */
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--x), var(--y));
+    opacity: 0;
+  }
 }
 </style>
 </head>
@@ -62,37 +98,72 @@ button {
   <img src="./her.jpg" alt="My Love">
 
   <h1>Happy Birthday cutu 🎂</h1>
-  <p>Happy Birthday to the girl who owns my heart mera golgappa meri rasmali mwahhh ❤️</p>
+  <p>Happy Birthday to the girl who owns my heart❤️ mera golgappa meri rasmali mwahhhh</p>
 
   <button onclick="playMusic()">▶ Play Song</button><br>
-  <button onclick="goFullScreen()">📱 Full Screen</button>
+  <button onclick="goFullScreen()">📱 Full Screen</button><br>
+  <button onclick="openLetter()">💌 Surprise</button>
 
   <audio id="music">
     <source src="./song.mp3" type="audio/mpeg">
   </audio>
 </div>
 
+<!-- LOVE LETTER POPUP -->
+<div class="popup" id="letter">
+  <div class="popup-content">
+    <h2>My Love ❤️</h2>
+    <p>
+      You are my smile, my peace, and my forever.<br><br>
+      Every heartbeat of mine belongs to you.
+      Happy Birthday, my love 💖
+    </p>
+    <button onclick="closeLetter()">Close 💕</button>
+  </div>
+</div>
+
 <script>
+/* MUSIC */
 function playMusic() {
-  const music = document.getElementById("music");
-  music.play().catch(() => {
-    alert("Tap again to allow sound ❤️");
-  });
+  document.getElementById("music").play();
 }
 
+/* FULL SCREEN */
 function goFullScreen() {
-  constúss = document.documentElement;
+  const el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen();
+  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+}
 
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
-  } else if (document.documentElement.webkitRequestFullscreen) {
-    document.documentElement.webkitRequestFullscreen(); // Safari
+/* POPUP */
+function openLetter() {
+  document.getElementById("letter").style.display = "flex";
+}
+
+function closeLetter() {
+  document.getElementById("letter").style.display = "none";
+  startFireworks();
+}
+
+/* FIREWORKS */
+function startFireworks() {
+  for (let i = 0; i < 120; i++) {
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.style.left = "50vw";
+    f.style.top = "50vh";
+    f.style.background = `hsl(${Math.random()*360},100%,60%)`;
+    f.style.setProperty("--x", (Math.random()-0.5)*400 + "px");
+    f.style.setProperty("--y", (Math.random()-0.5)*400 + "px");
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
   }
 }
 </script>
 
 </body>
 </html>
+
 
 
 
